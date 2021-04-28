@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UjianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // routing default
-Route::get('/', function () {
-    return view('porfolio');
-});
+// Route::get('/', function () {
+//     return view('porfolio');
+// });
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'tentang']);
+
+// Route::get('/kursus',[CourseController::class,'index'])->name('course.index');
+
+//ujian
+Route::get('/ujian', [UjianController::class, 'index']);
+Route::get('/ujian/create', [UjianController::class, 'create']);
+Route::post('/ujian', [UjianController::class, 'store']);
+Route::delete('/ujian/{ujian}', [UjianController::class, 'destroy']);
+Route::get('/ujian/{ujian}/edit', [UjianController::class, 'edit']);
+Route::patch('/ujian/{ujian}', [UjianController::class, 'update']);
+
+// Route::resource('ujian', UjianController::class);
